@@ -35,7 +35,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sign Up");
+        setTitle("SIGN UP");
         setPreferredSize(new java.awt.Dimension(800, 530));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

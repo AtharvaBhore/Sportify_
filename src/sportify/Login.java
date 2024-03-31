@@ -235,6 +235,8 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Login Successfull");
                 Landing LandingFrame = new Landing();
                 LandingFrame.setVisible(true);
+                LandingFrame.pack();
+                LandingFrame.setLocationRelativeTo(null);
             }else{
                 JOptionPane.showMessageDialog(null,"Invalid Email or Password");
                 lemail.setText("");

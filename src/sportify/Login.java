@@ -228,18 +228,17 @@ public class Login extends javax.swing.JFrame {
             String q1 = "SELECT * FROM LOGINFORM WHERE EMAIL =? AND PASSWORD =? ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, lemail.getText());
-            pst.setString(1, lpassword.getText());
+            pst.setString(2, lpassword.getText());
             rs = pst.executeQuery();
             if(rs.next()){
+                this.dispose();
                 JOptionPane.showMessageDialog(null,"Login Successfull");
                 Landing LandingFrame = new Landing();
                 LandingFrame.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null,"Invalid Email or Password");
-                this.dispose();
                 lemail.setText("");
                 lpassword.setText("");
-                
             }
         }
         catch(Exception e){

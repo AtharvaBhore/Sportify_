@@ -193,11 +193,9 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lemailActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_lemailActionPerformed
 
     private void lpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lpasswordActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_lpasswordActionPerformed
 
     private void bsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsignupActionPerformed

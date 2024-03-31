@@ -61,7 +61,7 @@ public class SignUp extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel2.setText("Full Name");
+        jLabel2.setText("Username");
 
         email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         email.addActionListener(new java.awt.event.ActionListener() {

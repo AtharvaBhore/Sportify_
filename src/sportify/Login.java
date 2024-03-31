@@ -2,8 +2,12 @@
 package sportify;
 import javax.swing.JOptionPane;
 import java.sql.*;
+
 public class Login extends javax.swing.JFrame {
 
+    Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
     public Login() {
         initComponents();
     }
@@ -101,6 +105,11 @@ public class Login extends javax.swing.JFrame {
                 bloginMouseClicked(evt);
             }
         });
+        blogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bloginActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Don't have an account? ");
@@ -184,7 +193,9 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -209,6 +220,32 @@ public class Login extends javax.swing.JFrame {
     private void bloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloginMouseClicked
        
     }//GEN-LAST:event_bloginMouseClicked
+
+    private void bloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloginActionPerformed
+    
+        try{
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+            String q1 = "SELECT * FROM LOGINFORM WHERE EMAIL =? AND PASSWORD =? ";
+            pst = conn.prepareStatement(q1);
+            pst.setString(1, lemail.getText());
+            pst.setString(1, lpassword.getText());
+            rs = pst.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null,"Login Successfull");
+                Landing LandingFrame = new Landing();
+                LandingFrame.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Invalid Email or Password");
+                this.dispose();
+                lemail.setText("");
+                lpassword.setText("");
+                
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_bloginActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -5,10 +5,12 @@ import java.sql.*;
 
 public class Booking extends javax.swing.JFrame {
 
+    String email="";
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    public Booking() {
+    public Booking(String em) {
+        email = em;
         initComponents();
     }
 
@@ -118,7 +120,7 @@ public class Booking extends javax.swing.JFrame {
     
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
-        football footballFrame = new football();
+        football footballFrame = new football(email);
         footballFrame.setVisible(true);
         footballFrame.pack();
         footballFrame.setLocationRelativeTo(null);
@@ -128,7 +130,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        Cricket cricketFrame = new Cricket();
+        Cricket cricketFrame = new Cricket(email);
         cricketFrame.setVisible(true);
         cricketFrame.pack();
         cricketFrame.setLocationRelativeTo(null);
@@ -138,7 +140,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-        Badminton badmintonFrame = new Badminton();
+        Badminton badmintonFrame = new Badminton(email);
         badmintonFrame.setVisible(true);
         badmintonFrame.pack();
         badmintonFrame.setLocationRelativeTo(null);
@@ -148,7 +150,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-        Basketball basketballFrame = new Basketball();
+        Basketball basketballFrame = new Basketball(email);
         basketballFrame.setVisible(true);
         basketballFrame.pack();
         basketballFrame.setLocationRelativeTo(null);
@@ -158,7 +160,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       
-        Landing LandingFrame = new Landing();
+        Landing LandingFrame = new Landing(email);
         LandingFrame.setVisible(true);
         LandingFrame.pack();
         LandingFrame.setLocationRelativeTo(null);
@@ -196,7 +198,7 @@ public class Booking extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Booking().setVisible(true);
+                new Booking("").setVisible(true);
             }
         });
     }

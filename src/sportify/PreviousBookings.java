@@ -10,10 +10,9 @@ package sportify;
  */
 public class PreviousBookings extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PreviousBookings
-     */
-    public PreviousBookings() {
+    String email="";
+    public PreviousBookings(String em) {
+        email = em;
         initComponents();
     }
 
@@ -70,7 +69,7 @@ public class PreviousBookings extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        Landing LandingFrame = new Landing();
+        Landing LandingFrame = new Landing(email);
         LandingFrame.setVisible(true);
         LandingFrame.pack();
         LandingFrame.setLocationRelativeTo(null);
@@ -106,7 +105,7 @@ public class PreviousBookings extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PreviousBookings().setVisible(true);
+                new PreviousBookings("").setVisible(true);
             }
         });
     }

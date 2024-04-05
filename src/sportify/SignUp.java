@@ -244,7 +244,7 @@ public class SignUp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"User already exists");
             }else{
                 try{
-                    String q2 = "INSERT INTO USERDATA VALUES(?,?,?,null,null,null,null) ";
+                    String q2 = "INSERT INTO USERDATA VALUES(?,?,?,null,null,null) ";
                     pst = conn.prepareStatement(q2);
                     pst.setString(1, username);
                     pst.setString(2, email);

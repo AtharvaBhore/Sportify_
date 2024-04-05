@@ -11,10 +11,9 @@ package sportify;
  */
 public class Landing extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Landing
-     */
-    public Landing() {
+    String email="";
+    public Landing(String em) {
+        email = em;
         initComponents();
     }
 
@@ -127,7 +126,7 @@ public class Landing extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        Booking bookingFrame = new Booking();
+        Booking bookingFrame = new Booking(email);
         bookingFrame.setVisible(true);
         bookingFrame.pack();
         bookingFrame.setLocationRelativeTo(null);
@@ -137,7 +136,7 @@ public class Landing extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-        PreviousBookings previousbookingFrame = new PreviousBookings();
+        PreviousBookings previousbookingFrame = new PreviousBookings(email);
         previousbookingFrame.setVisible(true);
         previousbookingFrame.pack();
         previousbookingFrame.setLocationRelativeTo(null);
@@ -155,7 +154,7 @@ public class Landing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Profile ProfileFrame = new Profile();
+        Profile ProfileFrame = new Profile(email);
         ProfileFrame.setVisible(true);
         ProfileFrame.pack();
         ProfileFrame.setLocationRelativeTo(null);
@@ -191,7 +190,7 @@ public class Landing extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Landing().setVisible(true);
+                new Landing("").setVisible(true);
             }
         });
     }

@@ -10,10 +10,9 @@ package sportify;
  */
 public class football extends javax.swing.JFrame {
 
-    /**
-     * Creates new form football
-     */
-    public football() {
+    String email="";
+    public football(String em) {
+        email = em;
         initComponents();
     }
 
@@ -77,7 +76,7 @@ public class football extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Booking bookFrame = new Booking();
+        Booking bookFrame = new Booking(email);
         bookFrame.setVisible(true);
         bookFrame.pack();
         bookFrame.setLocationRelativeTo(null); 
@@ -113,7 +112,7 @@ public class football extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new football().setVisible(true);
+                new football("").setVisible(true);
             }
         });
     }

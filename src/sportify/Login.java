@@ -252,7 +252,7 @@ public class Login extends javax.swing.JFrame {
             if(rs.next()){
                 this.dispose();
                 JOptionPane.showMessageDialog(null,"Login Successfull");
-                Landing LandingFrame = new Landing();
+                Landing LandingFrame = new Landing(lemail.getText());
                 LandingFrame.setVisible(true);
                 LandingFrame.pack();
                 LandingFrame.setLocationRelativeTo(null);

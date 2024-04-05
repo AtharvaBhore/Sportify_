@@ -207,7 +207,7 @@ public class profileCreation extends javax.swing.JFrame {
             if(rs.next()){
                 JOptionPane.showMessageDialog(null,"Profile created");
                 this.dispose();
-                Landing LandingFrame = new Landing();
+                Landing LandingFrame = new Landing(email);
                 LandingFrame.setVisible(true);
                 LandingFrame.pack();
                 LandingFrame.setLocationRelativeTo(null);

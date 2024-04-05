@@ -10,11 +10,10 @@ package sportify;
  */
 public class Badminton extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Badminton
-     */
-    public Badminton() {
+    String email="";
+    public Badminton(String em) {
         initComponents();
+        email = em;
     }
 
     /**
@@ -70,7 +69,7 @@ public class Badminton extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        Booking bookFrame = new Booking();
+        Booking bookFrame = new Booking(email);
         bookFrame.setVisible(true);
         bookFrame.pack();
         bookFrame.setLocationRelativeTo(null);
@@ -106,7 +105,7 @@ public class Badminton extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Badminton().setVisible(true);
+                new Badminton("").setVisible(true);
             }
         });
     }

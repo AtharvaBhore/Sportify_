@@ -235,7 +235,7 @@ public class SignUp extends javax.swing.JFrame {
             String username = lusername.getText();
             String email = lemail.getText();
             String pass = lpassword.getText();
-            String q1 = "SELECT * FROM LOGINFORM WHERE EMAIL =? AND PASSWORD =? ";
+            String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? AND PASSWORD =?  ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, email);
             pst.setString(2, pass);
@@ -244,7 +244,7 @@ public class SignUp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"User already exists");
             }else{
                 try{
-                    String q2 = "INSERT INTO LOGINFORM VALUES(?,?,?) ";
+                    String q2 = "INSERT INTO USERDATA VALUES(?,?,?,null,null,null,null) ";
                     pst = conn.prepareStatement(q2);
                     pst.setString(1, username);
                     pst.setString(2, email);
@@ -253,10 +253,10 @@ public class SignUp extends javax.swing.JFrame {
                     if(rs1.next()){
                         JOptionPane.showMessageDialog(null,"User Created");
                         this.dispose();
-                        Login LoginFrame = new Login();
-                        LoginFrame.setVisible(true);
-                        LoginFrame.pack();
-                        LoginFrame.setLocationRelativeTo(null);
+                        profileCreation pcFrame = new profileCreation(email);
+                        pcFrame.setVisible(true);
+                        pcFrame.pack();
+                        pcFrame.setLocationRelativeTo(null);
                     }else{
                         JOptionPane.showMessageDialog(null,"Invalid Username or Email or Password");
                     }

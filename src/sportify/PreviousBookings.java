@@ -69,6 +69,7 @@ public class PreviousBookings extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
+        this.dispose();
         Landing LandingFrame = new Landing(email);
         LandingFrame.setVisible(true);
         LandingFrame.pack();

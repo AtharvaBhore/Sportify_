@@ -120,46 +120,50 @@ public class Booking extends javax.swing.JFrame {
     
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
+        this.dispose();
         football footballFrame = new football(email);
         footballFrame.setVisible(true);
         footballFrame.pack();
         footballFrame.setLocationRelativeTo(null);
-        this.dispose();
+      
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        this.dispose();
         Cricket cricketFrame = new Cricket(email);
         cricketFrame.setVisible(true);
         cricketFrame.pack();
         cricketFrame.setLocationRelativeTo(null);
-        this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
+        this.dispose();
         Badminton badmintonFrame = new Badminton(email);
         badmintonFrame.setVisible(true);
         badmintonFrame.pack();
         badmintonFrame.setLocationRelativeTo(null);
-        this.dispose();
+     
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
+        this.dispose();
         Basketball basketballFrame = new Basketball(email);
         basketballFrame.setVisible(true);
         basketballFrame.pack();
         basketballFrame.setLocationRelativeTo(null);
-        this.dispose();
+       
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       
+        this.dispose();
         Landing LandingFrame = new Landing(email);
         LandingFrame.setVisible(true);
         LandingFrame.pack();

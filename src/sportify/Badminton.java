@@ -69,6 +69,7 @@ public class Badminton extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        this.dispose();
         Booking bookFrame = new Booking(email);
         bookFrame.setVisible(true);
         bookFrame.pack();

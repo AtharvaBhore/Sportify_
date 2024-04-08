@@ -222,6 +222,7 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_lpasswordActionPerformed
 
     private void bloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloginActionPerformed
+        this.dispose();
         Login LoginFrame = new Login();
         LoginFrame.setVisible(true);
         LoginFrame.pack();

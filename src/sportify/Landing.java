@@ -126,26 +126,27 @@ public class Landing extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
+        this.dispose();
         Booking bookingFrame = new Booking(email);
         bookingFrame.setVisible(true);
         bookingFrame.pack();
         bookingFrame.setLocationRelativeTo(null);
-        this.dispose();
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
+        this.dispose();
         PreviousBookings previousbookingFrame = new PreviousBookings(email);
         previousbookingFrame.setVisible(true);
         previousbookingFrame.pack();
         previousbookingFrame.setLocationRelativeTo(null);
-        this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        
+        this.dispose();
         Login LoginFrame = new Login();
         LoginFrame.setVisible(true);
         LoginFrame.pack();
@@ -154,6 +155,7 @@ public class Landing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.dispose();
         Profile ProfileFrame = new Profile(email);
         ProfileFrame.setVisible(true);
         ProfileFrame.pack();

@@ -1,6 +1,9 @@
 package sportify;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.*;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +30,7 @@ public class Profile extends javax.swing.JFrame {
                 firstname.setText("Firstname : " + rs.getString("firstname"));
                 lastname.setText("Lastname : " + rs.getString("lastname"));
                 phonenumber.setText("Phone Number : " + rs.getString("phonenumber"));
+                emailLbl.setText("Email : "+ email);
             }else{
                 JOptionPane.showMessageDialog(null,"Something went wrong");
             }
@@ -44,125 +48,237 @@ public class Profile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         username = new javax.swing.JLabel();
         firstname = new javax.swing.JLabel();
         lastname = new javax.swing.JLabel();
         phonenumber = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        editProflbl = new javax.swing.JLabel();
+        line = new javax.swing.JLabel();
+        backlbl = new javax.swing.JLabel();
+        emailLbl = new javax.swing.JLabel();
+        exitlb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
+
+        jLabel1.setFont(new java.awt.Font("Rubik", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 204, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Profile");
 
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         username.setText("Username");
 
-        firstname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        firstname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        firstname.setForeground(new java.awt.Color(255, 255, 255));
+        firstname.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         firstname.setText("First Name");
 
-        lastname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lastname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lastname.setForeground(new java.awt.Color(255, 255, 255));
+        lastname.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lastname.setText("Last Name");
 
-        phonenumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        phonenumber.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        phonenumber.setForeground(new java.awt.Color(255, 255, 255));
+        phonenumber.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         phonenumber.setText("Phone Number");
 
-        jButton1.setText("Edit Profile");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
+        jLabel2.setText("Personal details : ");
+
+        editProflbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        editProflbl.setForeground(new java.awt.Color(255, 255, 255));
+        editProflbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editProflbl.setText("Edit Profile");
+        editProflbl.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        editProflbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editProflblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editProflblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editProflblMouseExited(evt);
             }
         });
 
-        jButton3.setText("Previous Bookings");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        line.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        line.setForeground(new java.awt.Color(255, 255, 255));
+        line.setText("_______________________________________________________________________________________________________________________________________________");
+
+        backlbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        backlbl.setForeground(new java.awt.Color(255, 255, 255));
+        backlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backlbl.setText("Back");
+        backlbl.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        backlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backlblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backlblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backlblMouseExited(evt);
             }
         });
+
+        emailLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        emailLbl.setForeground(new java.awt.Color(255, 255, 255));
+        emailLbl.setText("Email");
+
+        exitlb.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb.setText("X");
+        exitlb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitlbMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitlbMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitlbMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(backlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editProflbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(233, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(178, 178, 178)
+                        .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addComponent(line, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(firstname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lastname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(exitlb))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(line)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(emailLbl)
+                .addGap(66, 66, 66)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editProflbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(username, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(firstname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lastname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(phonenumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void editProflblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProflblMouseClicked
+        this.dispose();
+        editProfile edtFrame = new editProfile(email);
+        edtFrame.setVisible(true);
+        edtFrame.pack();
+        edtFrame.setLocationRelativeTo(null);
+    }//GEN-LAST:event_editProflblMouseClicked
 
+    private void backlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backlblMouseClicked
         this.dispose();
         Landing LandingFrame = new Landing(email);
         LandingFrame.setVisible(true);
         LandingFrame.pack();
         LandingFrame.setLocationRelativeTo(null);
+    }//GEN-LAST:event_backlblMouseClicked
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void editProflblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProflblMouseEntered
+        editProflbl.setForeground(new Color(255, 204, 102));
+        editProflbl.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
+    }//GEN-LAST:event_editProflblMouseEntered
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void editProflblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProflblMouseExited
+        editProflbl.setForeground(Color.white);
+        editProflbl.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
+    }//GEN-LAST:event_editProflblMouseExited
 
-        this.dispose();
-        editProfile editProfileFrame = new editProfile(email);
-        editProfileFrame.setVisible(true);
-        editProfileFrame.pack();
-        editProfileFrame.setLocationRelativeTo(null);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void backlblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backlblMouseEntered
+        backlbl.setForeground(new Color(255, 204, 102));
+        backlbl.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
+    }//GEN-LAST:event_backlblMouseEntered
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        PreviousBookings previousbookingFrame = new PreviousBookings(email);
-        previousbookingFrame.setVisible(true);
-        previousbookingFrame.pack();
-        previousbookingFrame.setLocationRelativeTo(null);
-        this.dispose();
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void backlblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backlblMouseExited
+        backlbl.setForeground(Color.white);
+        backlbl.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
+    }//GEN-LAST:event_backlblMouseExited
+
+    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitlbMouseClicked
+
+    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlbMouseEntered
+
+    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+    }//GEN-LAST:event_exitlbMouseExited
 
     /**
      * @param args the command line arguments
@@ -204,12 +320,16 @@ public class Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backlbl;
+    private javax.swing.JLabel editProflbl;
+    private javax.swing.JLabel emailLbl;
+    private javax.swing.JLabel exitlb;
     private javax.swing.JLabel firstname;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lastname;
+    private javax.swing.JLabel line;
     private javax.swing.JLabel phonenumber;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables

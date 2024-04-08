@@ -290,9 +290,9 @@ public class football extends javax.swing.JFrame {
              
                     
                 }
-                catch(SQLException gg){
+                catch(SQLException e){
                 
-                    JOptionPane.showMessageDialog(null,gg);
+                    JOptionPane.showMessageDialog(null,e);
                 
                 }
             

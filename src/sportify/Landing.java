@@ -4,6 +4,9 @@
  */
 package sportify;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -11,7 +14,8 @@ package sportify;
  */
 public class Landing extends javax.swing.JFrame {
 
-    String email="";
+    String email = "";
+
     public Landing(String em) {
         email = em;
         initComponents();
@@ -27,49 +31,121 @@ public class Landing extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton5 = new javax.swing.JButton();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
+        profileLbl = new javax.swing.JLabel();
+        prevBookLbl = new javax.swing.JLabel();
+        signOutLbl = new javax.swing.JLabel();
+        line = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        exitlb1 = new javax.swing.JLabel();
+        Booklbl1 = new javax.swing.JLabel();
 
         jButton5.setText("jButton5");
 
+        jCheckBox1.setText("jCheckBox1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 300));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Sportify");
+        title.setFont(new java.awt.Font("Rubik", 1, 48)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 153, 0));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Sportify");
 
-        jButton2.setText("Book");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        profileLbl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        profileLbl.setForeground(new java.awt.Color(255, 255, 255));
+        profileLbl.setText("Your Profile");
+        profileLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileLblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                profileLblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                profileLblMouseExited(evt);
             }
         });
 
-        jButton3.setText("Previous Bookings");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        prevBookLbl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        prevBookLbl.setForeground(new java.awt.Color(255, 255, 255));
+        prevBookLbl.setText("Previous Bookings");
+        prevBookLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prevBookLblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                prevBookLblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                prevBookLblMouseExited(evt);
             }
         });
 
-        jButton4.setText("SIgn Out");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        signOutLbl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        signOutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        signOutLbl.setText("Sign Out");
+        signOutLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signOutLblMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                signOutLblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                signOutLblMouseExited(evt);
             }
         });
 
-        jButton6.setText("Profile");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+        line.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        line.setForeground(new java.awt.Color(255, 255, 255));
+        line.setText("____________________________________________________________________________________________________________________________________________");
+
+        image.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sportify/images/landing.png"))); // NOI18N
+        image.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        image.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        image.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sportify/images/landing.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        exitlb1.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb1.setText("X");
+        exitlb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitlb1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitlb1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitlb1MouseExited(evt);
+            }
+        });
+
+        Booklbl1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        Booklbl1.setForeground(new java.awt.Color(255, 255, 255));
+        Booklbl1.setText("Book a facility");
+        Booklbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Booklbl1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Booklbl1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Booklbl1MouseExited(evt);
             }
         });
 
@@ -78,89 +154,165 @@ public class Landing extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(profileLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(signOutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Booklbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(prevBookLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(556, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(exitlb1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(346, 346, 346)
+                .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 239, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(exitlb1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(title)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(image))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(line)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(profileLbl)
+                                .addGap(57, 57, 57)
+                                .addComponent(Booklbl1)
+                                .addGap(71, 71, 71)
+                                .addComponent(prevBookLbl)
+                                .addGap(65, 65, 65)
+                                .addComponent(signOutLbl))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(21, 21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        this.dispose();
-        Booking bookingFrame = new Booking(email);
-        bookingFrame.setVisible(true);
-        bookingFrame.pack();
-        bookingFrame.setLocationRelativeTo(null);
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        this.dispose();
-        PreviousBookings previousbookingFrame = new PreviousBookings(email);
-        previousbookingFrame.setVisible(true);
-        previousbookingFrame.pack();
-        previousbookingFrame.setLocationRelativeTo(null);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       
-        this.dispose();
-        Login LoginFrame = new Login();
-        LoginFrame.setVisible(true);
-        LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null);
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void profileLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileLblMouseClicked
         this.dispose();
         Profile ProfileFrame = new Profile(email);
         ProfileFrame.setVisible(true);
         ProfileFrame.pack();
         ProfileFrame.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_profileLblMouseClicked
+
+    private void prevBookLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBookLblMouseClicked
+        this.dispose();
+        PreviousBookings previousbookingFrame = new PreviousBookings(email);
+        previousbookingFrame.setVisible(true);
+        previousbookingFrame.pack();
+        previousbookingFrame.setLocationRelativeTo(null);
+    }//GEN-LAST:event_prevBookLblMouseClicked
+
+    private void signOutLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signOutLblMouseClicked
+        this.dispose();
+        Login LoginFrame = new Login();
+        LoginFrame.setVisible(true);
+        LoginFrame.pack();
+        LoginFrame.setLocationRelativeTo(null);
+    }//GEN-LAST:event_signOutLblMouseClicked
+
+    private void profileLblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileLblMouseEntered
+        profileLbl.setForeground(new Color(255, 204, 102));
+        profileLbl.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
+    }//GEN-LAST:event_profileLblMouseEntered
+
+    private void profileLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileLblMouseExited
+        profileLbl.setForeground(Color.white);
+        profileLbl.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
+    }//GEN-LAST:event_profileLblMouseExited
+
+    private void prevBookLblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBookLblMouseEntered
+        prevBookLbl.setForeground(new Color(255, 204, 102));
+        prevBookLbl.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
+    }//GEN-LAST:event_prevBookLblMouseEntered
+
+    private void prevBookLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBookLblMouseExited
+        prevBookLbl.setForeground(Color.white);
+        prevBookLbl.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
+    }//GEN-LAST:event_prevBookLblMouseExited
+
+    private void signOutLblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signOutLblMouseEntered
+        signOutLbl.setForeground(new Color(255, 204, 102));
+        signOutLbl.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
+    }//GEN-LAST:event_signOutLblMouseEntered
+
+    private void signOutLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signOutLblMouseExited
+        signOutLbl.setForeground(Color.white);
+        signOutLbl.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
+    }//GEN-LAST:event_signOutLblMouseExited
+
+    private void exitlb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitlb1MouseClicked
+
+    private void exitlb1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb1MouseEntered
+        // TODO add your handling code here:
+        exitlb1.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlb1MouseEntered
+
+    private void exitlb1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb1MouseExited
+        // TODO add your handling code here:
+        exitlb1.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
+    }//GEN-LAST:event_exitlb1MouseExited
+
+    private void Booklbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Booklbl1MouseClicked
+        this.dispose();
+        Booking bookingFrame = new Booking(email);
+        bookingFrame.setVisible(true);
+        bookingFrame.pack();
+        bookingFrame.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Booklbl1MouseClicked
+
+    private void Booklbl1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Booklbl1MouseEntered
+        Booklbl1.setForeground(new Color(255, 204, 102));
+        Booklbl1.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
+    }//GEN-LAST:event_Booklbl1MouseEntered
+
+    private void Booklbl1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Booklbl1MouseExited
+        Booklbl1.setForeground(Color.white);
+        Booklbl1.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
+    }//GEN-LAST:event_Booklbl1MouseExited
 
     /**
      * @param args the command line arguments
@@ -198,12 +350,18 @@ public class Landing extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel Booklbl1;
+    private javax.swing.JLabel exitlb1;
+    private javax.swing.JLabel image;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel line;
+    private javax.swing.JLabel prevBookLbl;
+    private javax.swing.JLabel profileLbl;
+    private javax.swing.JLabel signOutLbl;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

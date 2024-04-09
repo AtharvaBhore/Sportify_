@@ -10,6 +10,7 @@ public class football extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    String c = "";
     public football(String em) {
         initComponents();
         email = em;
@@ -258,19 +259,48 @@ public class football extends javax.swing.JFrame {
                 time.setText("");
             
             }else{
+                
+                
+                try{
+                
+                    String am = "SELECT * FROM facility WHERE facilityid = ?";
+                    pst = conn.prepareStatement(am);
+                    pst.setString(1, id.getText());
+                    ResultSet rsa = pst.executeQuery();
+                    
+                    if(rsa.next()){
+                        c = String.valueOf(rsa.getString("Cost"));
+               
+                     }else{
+                            JOptionPane.showMessageDialog(null,"Invalid facility ID");
+                            time.setText("");
+                            id.setText("");
+                            day.setText("");
+                            month.setText("");
+                            year.setText("");
+                            
+                      }
+                    
+                }
+                catch(SQLException ee){
+                
+                    JOptionPane.showMessageDialog(null,ee);
+                
+                }
+                
             
                 try{
                 
-                 
-                 
-                     String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?)";
+                     String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?)";
                      pst = conn.prepareStatement(q2);
                     pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time.getText());
                     pst.setString(2, id.getText());
-                    pst.setInt(3, 1000);
+                    pst.setString(3, c);
                     pst.setString(4, time.getText());
                     pst.setString(5, year.getText()+"-"+month.getText()+"-"+day.getText());
+                    pst.setString(6, email);
                     ResultSet rs1 = pst.executeQuery();
+                    
                     if(rs1.next()){
                 
                         JOptionPane.showMessageDialog(null,"Booking Confirmed");

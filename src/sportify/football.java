@@ -11,6 +11,8 @@ public class football extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     String c = "";
+    String name = "";
+    String sport = "";
     public football(String em) {
         initComponents();
         email = em;
@@ -270,6 +272,8 @@ public class football extends javax.swing.JFrame {
                     
                     if(rsa.next()){
                         c = String.valueOf(rsa.getString("Cost"));
+                        name = rsa.getString("name");
+                        sport = rsa.getString("sports");
                
                      }else{
                             JOptionPane.showMessageDialog(null,"Invalid facility ID");
@@ -291,7 +295,7 @@ public class football extends javax.swing.JFrame {
             
                 try{
                 
-                     String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?)";
+                     String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?)";
                      pst = conn.prepareStatement(q2);
                     pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time.getText());
                     pst.setString(2, id.getText());
@@ -299,6 +303,9 @@ public class football extends javax.swing.JFrame {
                     pst.setString(4, time.getText());
                     pst.setString(5, year.getText()+"-"+month.getText()+"-"+day.getText());
                     pst.setString(6, email);
+                    pst.setString(7, sport);
+                    pst.setString(8, name);
+                    
                     ResultSet rs1 = pst.executeQuery();
                     
                     if(rs1.next()){

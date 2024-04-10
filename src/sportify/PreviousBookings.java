@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package sportify;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,10 +10,45 @@ package sportify;
  */
 public class PreviousBookings extends javax.swing.JFrame {
 
-    String email="";
+     String email="";
+    Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     public PreviousBookings(String em) {
-        email = em;
+        
         initComponents();
+        email = em;
+        
+        try{
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+            String q1 = "SELECT * FROM booking WHERE email = ? ";
+            pst = conn.prepareStatement(q1);
+            pst.setString(1, email);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+                
+                String BID = rs.getString("BookingID");
+                String FID = rs.getString("FacilityID");
+                String amount = rs.getString("amount");
+                String starttime = rs.getString("starttime");
+                String dob = rs.getString("dob");
+                String name = rs.getString("name");
+                String sport = rs.getString("sport");
+                
+                String tbData[] = {sport,name,amount,starttime,dob,FID,BID};
+                
+                
+                DefaultTableModel tbm = (DefaultTableModel)table.getModel();
+                tbm.addRow(tbData);
+               
+            }
+            
+        }catch(SQLException e){
+                    JOptionPane.showMessageDialog(null,e);
+        }
+        
     }
 
     /**
@@ -27,6 +62,8 @@ public class PreviousBookings extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,27 +78,40 @@ public class PreviousBookings extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Previous Bookings");
 
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Sport", "Name", "Amount", "StartTime", "DOB", "FID", "BID"
+            }
+        ));
+        table.setRowSelectionAllowed(false);
+        table.setShowGrid(true);
+        jScrollPane1.setViewportView(table);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(34, 34, 34))
+                .addContainerGap())
         );
 
         pack();
@@ -114,5 +164,7 @@ public class PreviousBookings extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

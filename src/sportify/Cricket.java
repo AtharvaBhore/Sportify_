@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package sportify;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,9 +11,44 @@ package sportify;
 public class Cricket extends javax.swing.JFrame {
 
     String email="";
+    Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    String c = "";
+    String name = "";
+    String sport = "";
     public Cricket(String em) {
-        email = em;
+        
         initComponents();
+        email = em;
+        
+        try{
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+            String q1 = "SELECT * FROM Facility WHERE Sports = ? ";
+            pst = conn.prepareStatement(q1);
+            pst.setString(1, "Cricket");
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+                
+                String ID = rs.getString("FacilityID");
+                String Name = rs.getString("Name");
+                String Location = rs.getString("Location");
+                String Sports = rs.getString("Sports");
+                String Cost = String.valueOf(rs.getString("Cost"));
+                
+                String tbData[] = {ID,Name,Location,Sports,Cost};
+                
+                
+                DefaultTableModel tbm = (DefaultTableModel)table.getModel();
+                tbm.addRow(tbData);
+               
+            }
+            
+        }catch(SQLException e){
+                    JOptionPane.showMessageDialog(null,e);
+        }
+        
     }
 
     /**
@@ -28,15 +63,89 @@ public class Cricket extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        day = new javax.swing.JTextField();
+        month = new javax.swing.JTextField();
+        year = new javax.swing.JTextField();
+        time = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cricket");
 
-        back.setText("back");
+        back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
+            }
+        });
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Facility ID", "Name", "Location", "Sport", "Cost/hr"
+            }
+        ));
+        table.setRowSelectionAllowed(false);
+        table.setShowGrid(true);
+        table.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(table);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Enter Facility ID of preferes facility");
+
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
+
+        day.setText("Day");
+        day.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayActionPerformed(evt);
+            }
+        });
+
+        month.setText("Month");
+        month.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthActionPerformed(evt);
+            }
+        });
+
+        year.setText("Year");
+        year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearActionPerformed(evt);
+            }
+        });
+
+        time.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Enter time  (0-24 hr)");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Date ");
+
+        jButton2.setText("Book");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -47,21 +156,66 @@ public class Cricket extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(back)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)
+                                .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(492, 492, 492)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(327, 327, 327)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(32, 32, 32)
                 .addComponent(back)
-                .addGap(40, 40, 40))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,6 +239,121 @@ public class Cricket extends javax.swing.JFrame {
         bookFrame.pack();
         bookFrame.setLocationRelativeTo(null);
     }//GEN-LAST:event_backActionPerformed
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
+
+    private void dayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayActionPerformed
+
+    private void monthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthActionPerformed
+
+    private void yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearActionPerformed
+
+    private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        try{
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+            String q1 = "SELECT * FROM Booking WHERE BOOKINGID = ?";
+            pst = conn.prepareStatement(q1);
+            pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time.getText());
+            rs = pst.executeQuery();
+
+            if(rs.next()){
+
+                JOptionPane.showMessageDialog(null,"Already Booked");
+                id.setText("");
+                day.setText("");
+                month.setText("");
+                year.setText("");
+                time.setText("");
+
+            }else{
+
+                try{
+
+                    String am = "SELECT * FROM facility WHERE facilityid = ?";
+                    pst = conn.prepareStatement(am);
+                    pst.setString(1, id.getText());
+                    ResultSet rsa = pst.executeQuery();
+
+                    if(rsa.next()){
+                        c = String.valueOf(rsa.getString("Cost"));
+                        name = rsa.getString("name");
+                        sport = rsa.getString("sports");
+
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Invalid facility ID");
+                        time.setText("");
+                        id.setText("");
+                        day.setText("");
+                        month.setText("");
+                        year.setText("");
+
+                    }
+
+                }
+                catch(SQLException ee){
+
+                    JOptionPane.showMessageDialog(null,ee);
+
+                }
+
+                try{
+
+                    String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?)";
+                    pst = conn.prepareStatement(q2);
+                    pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time.getText());
+                    pst.setString(2, id.getText());
+                    pst.setString(3, c);
+                    pst.setString(4, time.getText());
+                    pst.setString(5, year.getText()+"-"+month.getText()+"-"+day.getText());
+                    pst.setString(6, email);
+                    pst.setString(7, sport);
+                    pst.setString(8, name);
+                    ResultSet rs1 = pst.executeQuery();
+
+                    if(rs1.next()){
+
+                        JOptionPane.showMessageDialog(null,"Booking Confirmed");
+                        this.dispose();
+                        Landing LandingFrame = new Landing(email);
+                        LandingFrame.setVisible(true);
+                        LandingFrame.pack();
+                        LandingFrame.setLocationRelativeTo(null);
+
+                    }else{
+
+                        JOptionPane.showMessageDialog(null,"Booking Failed");
+
+                    }
+
+                }
+                catch(SQLException e){
+
+                    JOptionPane.showMessageDialog(null,e);
+
+                }
+
+            }
+
+        }catch(SQLException e){
+
+            JOptionPane.showMessageDialog(null,e);
+
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,7 +392,18 @@ public class Cricket extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JTextField day;
+    private javax.swing.JTextField id;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField month;
+    private javax.swing.JTable table;
+    private javax.swing.JTextField time;
+    private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
 }

@@ -198,6 +198,17 @@ public class Badminton extends javax.swing.JFrame {
         exitlb.setForeground(new java.awt.Color(255, 255, 255));
         exitlb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exitlb.setText("X");
+        exitlb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitlbMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitlbMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitlbMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -444,6 +455,18 @@ public class Badminton extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_BookbtActionPerformed
+
+    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitlbMouseClicked
+
+    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitlbMouseEntered
+
+    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitlbMouseExited
 
     /**
      * @param args the command line arguments

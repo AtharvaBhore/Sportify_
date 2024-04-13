@@ -339,6 +339,21 @@ public class editProfile extends javax.swing.JFrame {
         PFrame.setLocationRelativeTo(null);
     }//GEN-LAST:event_backlblMouseClicked
 
+    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitlbMouseClicked
+ 
+    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlbMouseEntered
+
+    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+    }//GEN-LAST:event_exitlbMouseExited
+
     private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseEntered
         saveButton.setForeground(new Color(255, 204, 102));
         saveButton.setFont(new Font("Segoe UI Black", Font.BOLD, 20));

@@ -5,7 +5,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -329,6 +329,21 @@ public class Basketball extends javax.swing.JFrame {
         backlbl.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
     }//GEN-LAST:event_backlblMouseExited
 
+    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitlbMouseClicked
+ 
+    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlbMouseEntered
+
+    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+    }//GEN-LAST:event_exitlbMouseExited
+    
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed

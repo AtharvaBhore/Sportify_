@@ -2,6 +2,8 @@ package sportify;
 
 import java.awt.Color;
 import java.awt.Font;
+
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import java.sql.*;
 
@@ -252,6 +254,21 @@ public class Booking extends javax.swing.JFrame {
         backbt.setForeground(new Color(255, 204, 102));
         backbt.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
     }//GEN-LAST:event_backbtMouseEntered
+
+    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitlbMouseClicked
+ 
+    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlbMouseEntered
+
+    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+    }//GEN-LAST:event_exitlbMouseExited
 
     /**
      * @param args the command line arguments

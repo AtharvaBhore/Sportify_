@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
+
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 public class football extends javax.swing.JFrame {
@@ -414,6 +416,21 @@ public class football extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_BookbtActionPerformed
+
+    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitlbMouseClicked
+ 
+    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlbMouseEntered
+
+    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+    }//GEN-LAST:event_exitlbMouseExited
 
     private void yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearActionPerformed
         // TODO add your handling code here:

@@ -115,6 +115,11 @@ public class Login extends javax.swing.JFrame {
                 bloginActionPerformed(evt);
             }
         });
+        blogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bloginKeyPressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -253,11 +258,20 @@ public class Login extends javax.swing.JFrame {
     
         try{
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+            String pass = lpassword.getText();
+            char ch;
+            String nstr = "";
+            for (int i=0; i<pass.length(); i++)
+            {
+                ch= pass.charAt(i);
+                nstr= ch+nstr; 
+            }
             String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? AND PASSWORD =? ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, lemail.getText());
-            pst.setString(2, lpassword.getText());
+            pst.setString(2, nstr);
             rs = pst.executeQuery();
+            
             if(rs.next()){
                 this.dispose();
                 JOptionPane.showMessageDialog(null,"Login Successfull");
@@ -290,6 +304,42 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
     }//GEN-LAST:event_exitlbMouseExited
+
+    private void bloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bloginKeyPressed
+        try{
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+            String pass = lpassword.getText();
+            char ch;
+            String nstr = "";
+            for (int i=0; i<pass.length(); i++)
+            {
+                ch= pass.charAt(i);
+                nstr= ch+nstr; 
+            }
+            String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? AND PASSWORD =? ";
+            pst = conn.prepareStatement(q1);
+            pst.setString(1, lemail.getText());
+            pst.setString(2, nstr);
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                this.dispose();
+                JOptionPane.showMessageDialog(null,"Login Successfull");
+                Landing LandingFrame = new Landing(lemail.getText());
+                LandingFrame.setVisible(true);
+                LandingFrame.pack();
+                LandingFrame.setLocationRelativeTo(null);
+            }else{
+                JOptionPane.showMessageDialog(null,"Invalid Email or Password");
+                lemail.setText("");
+                lpassword.setText("");
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+    }//GEN-LAST:event_bloginKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

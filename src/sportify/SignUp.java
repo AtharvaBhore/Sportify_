@@ -64,7 +64,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Let's Sign you up!!");
 
-        lusername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lusername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lusernameActionPerformed(evt);
@@ -75,7 +75,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username");
 
-        lemail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lemail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lemailActionPerformed(evt);
@@ -90,6 +90,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
 
+        lpassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lpasswordActionPerformed(evt);
@@ -248,7 +249,7 @@ public class SignUp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,20 +288,28 @@ public class SignUp extends javax.swing.JFrame {
             String username = lusername.getText();
             String email = lemail.getText();
             String pass = lpassword.getText();
+            char ch;
+            String nstr = "";
+            for (int i=0; i<pass.length(); i++)
+            {
+                ch= pass.charAt(i); //extracts each character
+                nstr= ch+nstr; //adds each character in front of the existing string
+            }
+            
             String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? AND PASSWORD =?  ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, email);
-            pst.setString(2, pass);
+            pst.setString(2, nstr);
             rs = pst.executeQuery();
             if(rs.next()){
                 JOptionPane.showMessageDialog(null,"User already exists");
             }else{
                 try{
-                    String q2 = "INSERT INTO USERDATA VALUES(?,?,?,null,null,null,null) ";
+                    String q2 = "INSERT INTO USERDATA VALUES(?,?,?,null,null,null) ";
                     pst = conn.prepareStatement(q2);
                     pst.setString(1, username);
                     pst.setString(2, email);
-                    pst.setString(3, pass);
+                    pst.setString(3, nstr);
                     ResultSet rs1 = pst.executeQuery();
                     if(rs1.next()){
                         JOptionPane.showMessageDialog(null,"User Created");

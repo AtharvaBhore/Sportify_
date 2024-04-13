@@ -5,38 +5,38 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
+
 /**
  *
  * @author General
  */
 public class editProfile extends javax.swing.JFrame {
-    
+
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     String email;
+
     public editProfile(String em) {
         initComponents();
         email = em;
-         try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, email);
             rs = pst.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 username.setText(rs.getString("username"));
                 firstname.setText(rs.getString("firstname"));
                 lastname.setText(rs.getString("lastname"));
                 phonenumber.setText(rs.getString("phonenumber"));
-                
-                
-                
-            }else{
-                JOptionPane.showMessageDialog(null,"Something went wrong");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
             }
-        }catch(SQLException e){
-                    JOptionPane.showMessageDialog(null,e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
@@ -174,6 +174,17 @@ public class editProfile extends javax.swing.JFrame {
         exitlb.setForeground(new java.awt.Color(255, 255, 255));
         exitlb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exitlb.setText("X");
+        exitlb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitlbMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitlbMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitlbMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -257,7 +268,7 @@ public class editProfile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt){
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         Profile ProfileFrame = new Profile(email);
         ProfileFrame.setVisible(true);
@@ -268,10 +279,9 @@ public class editProfile extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt)
-    {
-        try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String user = username.getText();
             String first = firstname.getText();
             String last = lastname.getText();
@@ -280,33 +290,32 @@ public class editProfile extends javax.swing.JFrame {
             pst = conn.prepareStatement(q1);
             pst.setString(1, first);
             pst.setString(2, last);
-            pst.setString(3,ph);
-            pst.setString(4,user);
-            pst.setString(5,email);
+            pst.setString(3, ph);
+            pst.setString(4, user);
+            pst.setString(5, email);
             rs = pst.executeQuery();
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null,"Profile updated");
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Profile updated");
                 this.dispose();
                 Landing LandingFrame = new Landing(email);
                 LandingFrame.setVisible(true);
                 LandingFrame.pack();
                 LandingFrame.setLocationRelativeTo(null);
-            }else{
-                JOptionPane.showMessageDialog(null,"Invalid inputs");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid inputs");
                 username.setText("");
                 firstname.setText("");
                 lastname.setText("");
                 phonenumber.setText("");
             }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
 
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
@@ -339,20 +348,6 @@ public class editProfile extends javax.swing.JFrame {
         PFrame.setLocationRelativeTo(null);
     }//GEN-LAST:event_backlblMouseClicked
 
-    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_exitlbMouseClicked
- 
-    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
-        // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
-    }//GEN-LAST:event_exitlbMouseEntered
-
-    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
-        // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
-    }//GEN-LAST:event_exitlbMouseExited
 
     private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseEntered
         saveButton.setForeground(new Color(255, 204, 102));
@@ -363,6 +358,24 @@ public class editProfile extends javax.swing.JFrame {
         saveButton.setForeground(Color.white);
         saveButton.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
     }//GEN-LAST:event_saveButtonMouseExited
+
+    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+
+    }//GEN-LAST:event_exitlbMouseClicked
+
+    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
+
+    }//GEN-LAST:event_exitlbMouseEntered
+
+    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+        // TODO add your handling code here:
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
+
+    }//GEN-LAST:event_exitlbMouseExited
 
     /**
      * @param args the command line arguments

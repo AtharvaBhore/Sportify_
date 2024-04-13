@@ -1,9 +1,11 @@
 package sportify;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.BorderFactory;
+import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -12,25 +14,25 @@ import javax.swing.JOptionPane;
  */
 public class PreviousBookings extends javax.swing.JFrame {
 
-     String email="";
+    String email = "";
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     public PreviousBookings(String em) {
-        
+
         initComponents();
         email = em;
-        
-        try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String q1 = "SELECT * FROM booking WHERE email = ? ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, email);
             rs = pst.executeQuery();
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 String BID = rs.getString("BookingID");
                 String FID = rs.getString("FacilityID");
                 String amount = rs.getString("amount");
@@ -38,19 +40,18 @@ public class PreviousBookings extends javax.swing.JFrame {
                 String dob = rs.getString("dob");
                 String name = rs.getString("name");
                 String sport = rs.getString("sport");
-                
-                String tbData[] = {sport,name,amount,starttime,dob,FID,BID};
-                
-                
-                DefaultTableModel tbm = (DefaultTableModel)table.getModel();
+
+                String tbData[] = {sport, name, amount, starttime, dob, FID, BID};
+
+                DefaultTableModel tbm = (DefaultTableModel) table.getModel();
                 tbm.addRow(tbData);
-               
+
             }
-            
-        }catch(SQLException e){
-                    JOptionPane.showMessageDialog(null,e);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
+
     }
 
     /**
@@ -67,7 +68,7 @@ public class PreviousBookings extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         back = new javax.swing.JButton();
-        exitlb = new javax.swing.JLabel();
+        exitlb2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -114,9 +115,20 @@ public class PreviousBookings extends javax.swing.JFrame {
             }
         });
 
-        exitlb.setForeground(new java.awt.Color(255, 255, 255));
-        exitlb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exitlb.setText("X");
+        exitlb2.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb2.setText("X");
+        exitlb2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitlb2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitlb2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitlb2MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,8 +146,8 @@ public class PreviousBookings extends javax.swing.JFrame {
                                 .addGap(287, 287, 287))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76)
-                                .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(77, 77, 77)
+                                .addComponent(exitlb2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,7 +156,7 @@ public class PreviousBookings extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exitlb2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -189,21 +201,22 @@ public class PreviousBookings extends javax.swing.JFrame {
         back.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
     }//GEN-LAST:event_backMouseExited
 
-    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+    private void exitlb2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb2MouseClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_exitlbMouseClicked
- 
-    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
-        // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
-    }//GEN-LAST:event_exitlbMouseEntered
+    }//GEN-LAST:event_exitlb2MouseClicked
 
-    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+    private void exitlb2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb2MouseEntered
         // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
-    }//GEN-LAST:event_exitlbMouseExited
-    
+        exitlb2.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlb2MouseEntered
+
+    private void exitlb2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb2MouseExited
+        // TODO add your handling code here:
+        exitlb2.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
+
+    }//GEN-LAST:event_exitlb2MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -241,7 +254,7 @@ public class PreviousBookings extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JLabel exitlb;
+    private javax.swing.JLabel exitlb2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

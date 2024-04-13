@@ -1,11 +1,13 @@
 package sportify;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.BorderFactory;
+import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -14,44 +16,44 @@ import javax.swing.JOptionPane;
  */
 public class Badminton extends javax.swing.JFrame {
 
-    String email="";
+    String email = "";
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     String c = "";
     String name = "";
     String sport = "";
+
     public Badminton(String em) {
         initComponents();
         email = em;
-        
-        try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String q1 = "SELECT * FROM Facility WHERE Sports = ? ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, "Badminton");
             rs = pst.executeQuery();
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 String ID = rs.getString("FacilityID");
                 String Name = rs.getString("Name");
                 String Location = rs.getString("Location");
                 String Sports = rs.getString("Sports");
                 String Cost = String.valueOf(rs.getString("Cost"));
-                
-                String tbData[] = {ID,Name,Location,Sports,Cost};
-                
-                
-                DefaultTableModel tbm = (DefaultTableModel)table.getModel();
+
+                String tbData[] = {ID, Name, Location, Sports, Cost};
+
+                DefaultTableModel tbm = (DefaultTableModel) table.getModel();
                 tbm.addRow(tbData);
-               
+
             }
-            
-        }catch(SQLException e){
-                    JOptionPane.showMessageDialog(null,e);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
+
     }
 
     /**
@@ -350,117 +352,111 @@ public class Badminton extends javax.swing.JFrame {
 
     private void BookbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbtActionPerformed
 
-         try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String q1 = "SELECT * FROM Booking WHERE BOOKINGID = ?";
             pst = conn.prepareStatement(q1);
             String st = timeDrop.getSelectedItem().toString().substring(0, 2);
             int time = Integer.parseInt(st);
-            pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time);
+            pst.setString(1, id.getText() + day.getText() + month.getText() + year.getText() + time);
             rs = pst.executeQuery();
-            
-            if(rs.next()){
-                
-                JOptionPane.showMessageDialog(null,"Already Booked");
+
+            if (rs.next()) {
+
+                JOptionPane.showMessageDialog(null, "Already Booked");
                 id.setText("");
                 day.setText("");
                 month.setText("");
                 year.setText("");
-            
-            }else{
-                
-                
-                try{
-                
+
+            } else {
+
+                try {
+
                     String am = "SELECT * FROM facility WHERE facilityid = ?";
                     pst = conn.prepareStatement(am);
                     pst.setString(1, id.getText());
                     ResultSet rsa = pst.executeQuery();
-                    
-                    if(rsa.next()){
+
+                    if (rsa.next()) {
                         c = String.valueOf(rsa.getString("Cost"));
                         name = rsa.getString("name");
                         sport = rsa.getString("sports");
-               
-                     }else{
-                            JOptionPane.showMessageDialog(null,"Invalid facility ID");
-                            
-                            id.setText("");
-                            day.setText("");
-                            month.setText("");
-                            year.setText("");
-                            
-                      }
-                    
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid facility ID");
+
+                        id.setText("");
+                        day.setText("");
+                        month.setText("");
+                        year.setText("");
+
+                    }
+
+                } catch (SQLException ee) {
+
+                    JOptionPane.showMessageDialog(null, ee);
+
                 }
-                catch(SQLException ee){
-                
-                    JOptionPane.showMessageDialog(null,ee);
-                
-                }
-                
-            
-                try{
-                    String bookDate = year.getText()+"-"+month.getText()+"-"+day.getText();
+
+                try {
+                    String bookDate = year.getText() + "-" + month.getText() + "-" + day.getText();
                     LocalDate inputDate = LocalDate.parse(bookDate);
                     LocalDate currDate = LocalDate.now();
                     int vtime = time;
                     int currentHour = LocalTime.now().getHour();
-                    if(inputDate.isBefore(currDate) || (inputDate.isEqual(currDate) &&  vtime<currentHour+1))
-                    {
-                        JOptionPane.showMessageDialog(null,"Invalid date and time");
+                    if (inputDate.isBefore(currDate) || (inputDate.isEqual(currDate) && vtime < currentHour + 1)) {
+                        JOptionPane.showMessageDialog(null, "Invalid date and time");
+                    } else {
+                        String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?)";
+                        pst = conn.prepareStatement(q2);
+                        pst.setString(1, id.getText() + day.getText() + month.getText() + year.getText() + time);
+                        pst.setString(2, id.getText());
+                        pst.setString(3, c);
+                        pst.setString(4, Integer.toString(time));
+                        pst.setString(5, year.getText() + "-" + month.getText() + "-" + day.getText());
+                        pst.setString(6, email);
+                        pst.setString(7, sport);
+                        pst.setString(8, name);
+
+                        ResultSet rs1 = pst.executeQuery();
+
+                        if (rs1.next()) {
+
+                            JOptionPane.showMessageDialog(null, "Booking Confirmed");
+                            this.dispose();
+                            Landing LandingFrame = new Landing(email);
+                            LandingFrame.setVisible(true);
+                            LandingFrame.pack();
+                            LandingFrame.setLocationRelativeTo(null);
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Booking Failed");
+
+                        }
                     }
-                    else{
-                    String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?)";
-                    pst = conn.prepareStatement(q2);
-                    pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time);
-                    pst.setString(2, id.getText());
-                    pst.setString(3, c);
-                    pst.setString(4, Integer.toString(time));
-                    pst.setString(5, year.getText()+"-"+month.getText()+"-"+day.getText());
-                    pst.setString(6, email);
-                    pst.setString(7, sport);
-                    pst.setString(8, name);
-                    
-                    ResultSet rs1 = pst.executeQuery();
-                    
-                    if(rs1.next()){
-                
-                        JOptionPane.showMessageDialog(null,"Booking Confirmed");
-                        this.dispose();
-                        Landing LandingFrame = new Landing(email);
-                        LandingFrame.setVisible(true);
-                        LandingFrame.pack();
-                        LandingFrame.setLocationRelativeTo(null);  
-                
-                    }else{
-                 
-                     JOptionPane.showMessageDialog(null,"Booking Failed");
-                     
-                    }
-                    } 
+                } catch (SQLException e) {
+
+                    JOptionPane.showMessageDialog(null, e);
+
                 }
-                catch(SQLException e){
-                
-                    JOptionPane.showMessageDialog(null,e);
-                
-                }
-            
+
             }
-            
-        }catch(SQLException e){
-           
-            JOptionPane.showMessageDialog(null,e);
-                     
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
         }
-        
+
     }//GEN-LAST:event_BookbtActionPerformed
 
     private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitlbMouseClicked
- 
+
     private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
         // TODO add your handling code here:
         exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
@@ -468,7 +464,8 @@ public class Badminton extends javax.swing.JFrame {
 
     private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
         // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
+
     }//GEN-LAST:event_exitlbMouseExited
 
     /**

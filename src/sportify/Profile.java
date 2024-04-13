@@ -12,34 +12,33 @@ import javax.swing.JOptionPane;
  */
 public class Profile extends javax.swing.JFrame {
 
-    String email="";
+    String email = "";
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+
     public Profile(String em) {
         initComponents();
         email = em;
-        try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, email);
             rs = pst.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 username.setText("Username : " + rs.getString("username"));
                 firstname.setText("Firstname : " + rs.getString("firstname"));
                 lastname.setText("Lastname : " + rs.getString("lastname"));
                 phonenumber.setText("Phone Number : " + rs.getString("phonenumber"));
-                emailLbl.setText("Email : "+ email);
-            }else{
-                JOptionPane.showMessageDialog(null,"Something went wrong");
+                emailLbl.setText("Email : " + email);
+            } else {
+                JOptionPane.showMessageDialog(null, "Something went wrong");
             }
-        }catch(SQLException e){
-                    JOptionPane.showMessageDialog(null,e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,7 +167,7 @@ public class Profile extends javax.swing.JFrame {
                         .addComponent(editProflbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(233, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(178, 178, 178)
                         .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +278,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
         // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
     }//GEN-LAST:event_exitlbMouseExited
 
     /**
@@ -308,17 +307,15 @@ public class Profile extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() { 
+            public void run() {
                 new Profile("").setVisible(true);
             }
         });
-        
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,4 +1,3 @@
-
 package sportify;
 
 import java.awt.Color;
@@ -11,6 +10,7 @@ public class SignUp extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+
     public SignUp() {
         initComponents();
     }
@@ -263,7 +263,7 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lusernameActionPerformed
-        
+
     }//GEN-LAST:event_lusernameActionPerformed
 
     private void lemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lemailActionPerformed
@@ -282,51 +282,49 @@ public class SignUp extends javax.swing.JFrame {
 
     private void bsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsignupActionPerformed
         // TODO add your handling code here:
-        try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String username = lusername.getText();
             String email = lemail.getText();
             String pass = lpassword.getText();
             char ch;
             String nstr = "";
-            for (int i=0; i<pass.length(); i++)
-            {
-                ch= pass.charAt(i); //extracts each character
-                nstr= ch+nstr; //adds each character in front of the existing string
+            for (int i = 0; i < pass.length(); i++) {
+                ch = pass.charAt(i); //extracts each character
+                nstr = ch + nstr; //adds each character in front of the existing string
             }
-            
+
             String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? AND PASSWORD =?  ";
             pst = conn.prepareStatement(q1);
             pst.setString(1, email);
             pst.setString(2, nstr);
             rs = pst.executeQuery();
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null,"User already exists");
-            }else{
-                try{
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "User already exists");
+            } else {
+                try {
                     String q2 = "INSERT INTO USERDATA VALUES(?,?,?,null,null,null) ";
                     pst = conn.prepareStatement(q2);
                     pst.setString(1, username);
                     pst.setString(2, email);
                     pst.setString(3, nstr);
                     ResultSet rs1 = pst.executeQuery();
-                    if(rs1.next()){
-                        JOptionPane.showMessageDialog(null,"User Created");
+                    if (rs1.next()) {
+                        JOptionPane.showMessageDialog(null, "User Created");
                         this.dispose();
                         profileCreation pcFrame = new profileCreation(email);
                         pcFrame.setVisible(true);
                         pcFrame.pack();
                         pcFrame.setLocationRelativeTo(null);
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Invalid Username or Email or Password");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid Username or Email or Password");
                     }
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null,e);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
                 }
             }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_bsignupActionPerformed
 
@@ -342,7 +340,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
         // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
     }//GEN-LAST:event_exitlbMouseExited
 
     /**

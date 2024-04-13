@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sportify;
+
 import java.awt.Color;
 import java.sql.*;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author indra
@@ -16,15 +18,16 @@ public class profileCreation extends javax.swing.JFrame {
     /**
      * Creates new form profileCreation
      */
-    String email="";
+    String email = "";
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+
     public profileCreation(String em) {
         initComponents();
         email = em;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -212,8 +215,8 @@ public class profileCreation extends javax.swing.JFrame {
 
     private void createProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProfileActionPerformed
         // TODO add your handling code here:
-        try{
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
+        try {
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
             String first = fname.getText();
             String last = lname.getText();
             String ph = phNumber.getText();
@@ -221,25 +224,24 @@ public class profileCreation extends javax.swing.JFrame {
             pst = conn.prepareStatement(q1);
             pst.setString(1, first);
             pst.setString(2, last);
-            pst.setString(3,ph);
-            pst.setString(4,email);
+            pst.setString(3, ph);
+            pst.setString(4, email);
             rs = pst.executeQuery();
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null,"Profile created");
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Profile created");
                 this.dispose();
                 Landing LandingFrame = new Landing(email);
                 LandingFrame.setVisible(true);
                 LandingFrame.pack();
                 LandingFrame.setLocationRelativeTo(null);
-            }else{
-                JOptionPane.showMessageDialog(null,"Invalid inputs");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid inputs");
                 lname.setText("");
                 fname.setText("");
                 phNumber.setText("");
             }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_createProfileActionPerformed
 
@@ -255,7 +257,7 @@ public class profileCreation extends javax.swing.JFrame {
 
     private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
         // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
+        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
     }//GEN-LAST:event_exitlbMouseExited
 
     /**
@@ -288,7 +290,7 @@ public class profileCreation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 new profileCreation("").setVisible(true);
             }
         });

@@ -2,10 +2,9 @@ package sportify;
 
 import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.BorderFactory;
 
 public class Booking extends javax.swing.JFrame {
 
@@ -35,7 +34,7 @@ public class Booking extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         backbt = new javax.swing.JButton();
         line1 = new javax.swing.JLabel();
-        exitlb1 = new javax.swing.JLabel();
+        exitlb2 = new javax.swing.JLabel();
 
         line.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         line.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,9 +118,20 @@ public class Booking extends javax.swing.JFrame {
         line1.setForeground(new java.awt.Color(255, 255, 255));
         line1.setText("_______________________________________________________________________________________________________________________________________________");
 
-        exitlb1.setForeground(new java.awt.Color(255, 255, 255));
-        exitlb1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exitlb1.setText("X");
+        exitlb2.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb2.setText("X");
+        exitlb2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitlb2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitlb2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitlb2MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,7 +152,7 @@ public class Booking extends javax.swing.JFrame {
                 .addGap(253, 253, 253)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitlb1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exitlb2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,7 +168,7 @@ public class Booking extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(exitlb1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(exitlb2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line1)
                 .addGap(42, 42, 42)
@@ -255,20 +265,20 @@ public class Booking extends javax.swing.JFrame {
         backbt.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
     }//GEN-LAST:event_backbtMouseEntered
 
-    private void exitlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseClicked
+    private void exitlb2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb2MouseClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_exitlbMouseClicked
- 
-    private void exitlbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseEntered
-        // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(Color.white));
-    }//GEN-LAST:event_exitlbMouseEntered
+    }//GEN-LAST:event_exitlb2MouseClicked
 
-    private void exitlbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlbMouseExited
+    private void exitlb2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb2MouseEntered
         // TODO add your handling code here:
-        exitlb.setBorder(BorderFactory.createLineBorder(new Color(51,51,51)));
-    }//GEN-LAST:event_exitlbMouseExited
+        exitlb2.setBorder(BorderFactory.createLineBorder(Color.white));
+    }//GEN-LAST:event_exitlb2MouseEntered
+
+    private void exitlb2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitlb2MouseExited
+        // TODO add your handling code here:
+        exitlb2.setBorder(BorderFactory.createLineBorder(new Color(51, 51, 51)));
+    }//GEN-LAST:event_exitlb2MouseExited
 
     /**
      * @param args the command line arguments
@@ -309,7 +319,7 @@ public class Booking extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backbt;
     private javax.swing.JLabel exitlb;
-    private javax.swing.JLabel exitlb1;
+    private javax.swing.JLabel exitlb2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

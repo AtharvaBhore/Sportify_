@@ -62,6 +62,7 @@ public class editProfile extends javax.swing.JFrame {
         saveButton = new javax.swing.JButton();
         line = new javax.swing.JLabel();
         backlbl = new javax.swing.JLabel();
+        exitlb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -170,6 +171,10 @@ public class editProfile extends javax.swing.JFrame {
             }
         });
 
+        exitlb.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb.setText("X");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,13 +208,17 @@ public class editProfile extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(title)
-                .addGap(282, 282, 282))
+                .addGap(251, 251, 251)
+                .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(title)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title)
+                    .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line)
                 .addGap(27, 27, 27)
@@ -377,6 +386,7 @@ public class editProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backlbl;
+    private javax.swing.JLabel exitlb;
     private javax.swing.JTextField firstname;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

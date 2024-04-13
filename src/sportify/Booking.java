@@ -24,6 +24,7 @@ public class Booking extends javax.swing.JFrame {
     private void initComponents() {
 
         line = new javax.swing.JLabel();
+        exitlb = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -32,10 +33,15 @@ public class Booking extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         backbt = new javax.swing.JButton();
         line1 = new javax.swing.JLabel();
+        exitlb1 = new javax.swing.JLabel();
 
         line.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         line.setForeground(new java.awt.Color(255, 255, 255));
         line.setText("_______________________________________________________________________________________________________________________________________________");
+
+        exitlb.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb.setText("X");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -111,6 +117,10 @@ public class Booking extends javax.swing.JFrame {
         line1.setForeground(new java.awt.Color(255, 255, 255));
         line1.setText("_______________________________________________________________________________________________________________________________________________");
 
+        exitlb1.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb1.setText("X");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -129,7 +139,9 @@ public class Booking extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(253, 253, 253)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exitlb1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backbt, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,8 +150,13 @@ public class Booking extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(exitlb1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line1)
                 .addGap(42, 42, 42)
@@ -274,6 +291,8 @@ public class Booking extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backbt;
+    private javax.swing.JLabel exitlb;
+    private javax.swing.JLabel exitlb1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

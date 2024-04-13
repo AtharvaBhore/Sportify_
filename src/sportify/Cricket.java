@@ -2,6 +2,8 @@ package sportify;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.table.DefaultTableModel;
 
 import javax.swing.JOptionPane;
@@ -76,6 +78,7 @@ public class Cricket extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Bookbt = new javax.swing.JButton();
         timeDrop = new javax.swing.JComboBox<>();
+        exitlb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -193,11 +196,14 @@ public class Cricket extends javax.swing.JFrame {
         timeDrop.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         timeDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00:00 - 01:00", "01:00 - 02:00", "02:00 - 03:00", "03:00 - 04:00", "04:00 - 05:00", "05:00 - 06:00", "06:00 - 07:00", "07:00 - 08:00", "08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00", "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00", "17:00 - 18:00", "18:00 - 19:00", "19:00 - 20:00", "20:00 - 21:00", "21:00 - 22:00", "22:00 - 23:00", "23:00 - 00:00" }));
 
+        exitlb.setForeground(new java.awt.Color(255, 255, 255));
+        exitlb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitlb.setText("X");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,13 +239,24 @@ public class Cricket extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(319, 319, 319))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(exitlb, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +345,7 @@ public class Cricket extends javax.swing.JFrame {
 
     private void BookbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbtActionPerformed
 
-        try{
+          try{
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
             String q1 = "SELECT * FROM Booking WHERE BOOKINGID = ?";
             pst = conn.prepareStatement(q1);
@@ -379,11 +396,12 @@ public class Cricket extends javax.swing.JFrame {
                 
             
                 try{
-                    int vday = Integer.parseInt(day.getText());
-                    int vmonth = Integer.parseInt(month.getText());
-                    int vyear = Integer.parseInt(year.getText());
+                    String bookDate = year.getText()+"-"+month.getText()+"-"+day.getText();
+                    LocalDate inputDate = LocalDate.parse(bookDate);
+                    LocalDate currDate = LocalDate.now();
                     int vtime = time;
-                    if((vday<=10 && vmonth<=4 && vyear<=2024) || vtime<0 || vtime>=24)
+                    int currentHour = LocalTime.now().getHour();
+                    if(inputDate.isBefore(currDate) || vtime<currentHour+1)
                     {
                         JOptionPane.showMessageDialog(null,"Invalid date and time");
                     }
@@ -403,7 +421,7 @@ public class Cricket extends javax.swing.JFrame {
                     
                     if(rs1.next()){
                 
-                        JOptionPane.showMessageDialog(null,"Booking Confirmed");
+                        JOptionPane.showMessageDialog(null,"Booking Confirmed"+currentHour);
                         this.dispose();
                         Landing LandingFrame = new Landing(email);
                         LandingFrame.setVisible(true);
@@ -431,7 +449,6 @@ public class Cricket extends javax.swing.JFrame {
                      
         }
         
-
     }//GEN-LAST:event_BookbtActionPerformed
 
     /**
@@ -473,6 +490,7 @@ public class Cricket extends javax.swing.JFrame {
     private javax.swing.JButton Bookbt;
     private javax.swing.JLabel backlbl;
     private javax.swing.JTextField day;
+    private javax.swing.JLabel exitlb;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -401,7 +401,7 @@ public class Basketball extends javax.swing.JFrame {
                     LocalDate currDate = LocalDate.now();
                     int vtime = time;
                     int currentHour = LocalTime.now().getHour();
-                    if(inputDate.isBefore(currDate) || vtime<currentHour+1)
+                    if(inputDate.isBefore(currDate) || (inputDate.isEqual(currDate) &&  vtime<currentHour+1))
                     {
                         JOptionPane.showMessageDialog(null,"Invalid date and time");
                     }

@@ -7,6 +7,10 @@ public class Sportify {
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null);
+//            test testf = new test();
+//            testf.setVisible(true);
+//            testf.pack();
+//            testf.setLocationRelativeTo(null);
     }
     
 } 

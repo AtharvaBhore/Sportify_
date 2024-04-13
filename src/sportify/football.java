@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class football extends javax.swing.JFrame {
@@ -64,13 +64,13 @@ public class football extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        time = new javax.swing.JTextField();
         Bookbt = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         day = new javax.swing.JTextField();
         year = new javax.swing.JTextField();
         month = new javax.swing.JTextField();
         backlbl = new javax.swing.JLabel();
+        timeDrop = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -126,14 +126,6 @@ public class football extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Enter time  (0-24 hr)");
-
-        time.setBackground(new java.awt.Color(204, 204, 204));
-        time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        time.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timeActionPerformed(evt);
-            }
-        });
 
         Bookbt.setBackground(new java.awt.Color(51, 51, 51));
         Bookbt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -206,6 +198,10 @@ public class football extends javax.swing.JFrame {
             }
         });
 
+        timeDrop.setBackground(new java.awt.Color(204, 204, 204));
+        timeDrop.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        timeDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00:00 - 01:00", "01:00 - 02:00", "02:00 - 03:00", "03:00 - 04:00", "04:00 - 05:00", "05:00 - 06:00", "06:00 - 07:00", "07:00 - 08:00", "08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00", "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00", "17:00 - 18:00", "18:00 - 19:00", "19:00 - 20:00", "20:00 - 21:00", "21:00 - 22:00", "22:00 - 23:00", "23:00 - 00:00" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -229,22 +225,23 @@ public class football extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addComponent(Bookbt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(timeDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(319, 319, 319))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(backlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(319, 319, 319))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(Bookbt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(337, 337, 337))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,25 +253,25 @@ public class football extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(time, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(Bookbt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(backlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(Bookbt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(backlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(24, 24, 24)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,17 +292,15 @@ public class football extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
 
-    private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_timeActionPerformed
-
     private void BookbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbtActionPerformed
         
         try{
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","system");
             String q1 = "SELECT * FROM Booking WHERE BOOKINGID = ?";
             pst = conn.prepareStatement(q1);
-            pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time.getText());
+            String st = timeDrop.getSelectedItem().toString().substring(0, 2);
+            int time = Integer.parseInt(st);
+            pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time);
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -315,7 +310,6 @@ public class football extends javax.swing.JFrame {
                 day.setText("");
                 month.setText("");
                 year.setText("");
-                time.setText("");
             
             }else{
                 
@@ -334,7 +328,7 @@ public class football extends javax.swing.JFrame {
                
                      }else{
                             JOptionPane.showMessageDialog(null,"Invalid facility ID");
-                            time.setText("");
+                            
                             id.setText("");
                             day.setText("");
                             month.setText("");
@@ -354,7 +348,7 @@ public class football extends javax.swing.JFrame {
                     int vday = Integer.parseInt(day.getText());
                     int vmonth = Integer.parseInt(month.getText());
                     int vyear = Integer.parseInt(year.getText());
-                    int vtime = Integer.parseInt(time.getText());
+                    int vtime = time;
                     if((vday<=10 && vmonth<=4 && vyear<=2024) || vtime<0 || vtime>=24)
                     {
                         JOptionPane.showMessageDialog(null,"Invalid date and time");
@@ -362,10 +356,10 @@ public class football extends javax.swing.JFrame {
                     else{
                     String q2 = "INSERT INTO BOOKING VALUES(?,?,?,?,?,?,?,?)";
                     pst = conn.prepareStatement(q2);
-                    pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time.getText());
+                    pst.setString(1, id.getText()+day.getText()+month.getText()+year.getText()+time);
                     pst.setString(2, id.getText());
                     pst.setString(3, c);
-                    pst.setString(4, time.getText());
+                    pst.setString(4, Integer.toString(time));
                     pst.setString(5, year.getText()+"-"+month.getText()+"-"+day.getText());
                     pst.setString(6, email);
                     pst.setString(7, sport);
@@ -405,10 +399,6 @@ public class football extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BookbtActionPerformed
 
-    private void dayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dayActionPerformed
-
     private void yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_yearActionPerformed
@@ -444,6 +434,10 @@ public class football extends javax.swing.JFrame {
         Bookbt.setForeground(Color.white);
         Bookbt.setFont(new Font("Segoe UI Black", Font.BOLD, 18));
     }//GEN-LAST:event_BookbtMouseExited
+
+    private void dayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,7 +488,7 @@ public class football extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField month;
     private javax.swing.JTable table;
-    private javax.swing.JTextField time;
+    private javax.swing.JComboBox<String> timeDrop;
     private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
 }

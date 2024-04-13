@@ -81,6 +81,7 @@ public class Cricket extends javax.swing.JFrame {
         exitlb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -421,7 +422,7 @@ public class Cricket extends javax.swing.JFrame {
                     
                     if(rs1.next()){
                 
-                        JOptionPane.showMessageDialog(null,"Booking Confirmed"+currentHour);
+                        JOptionPane.showMessageDialog(null,"Booking Confirmed");
                         this.dispose();
                         Landing LandingFrame = new Landing(email);
                         LandingFrame.setVisible(true);

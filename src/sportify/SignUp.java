@@ -14,6 +14,54 @@ public class SignUp extends javax.swing.JFrame {
     public SignUp() {
         initComponents();
     }
+    
+    static String strToBinary(String s)
+    {
+        int n = s.length();
+        String binary = "";
+ 
+        for (int i = 0; i < n; i++) 
+        {
+            // convert each char to
+            // ASCII value
+            int val = Integer.valueOf(s.charAt(i));
+ 
+            // Convert ASCII value to binary
+            String bin = "";
+            while (val > 0) 
+            {
+                if (val % 2 == 1)
+                {
+                    bin += '1';
+                }
+                else
+                    bin += '0';
+                val /= 2;
+            }
+            bin = reverse(bin);
+            binary += bin;
+ 
+        }
+                    return binary;
+
+    }
+ 
+    static String reverse(String input) 
+    {
+        char[] a = input.toCharArray();
+        int l, r = 0;
+        r = a.length - 1;
+ 
+        for (l = 0; l < r; l++, r--)
+        {
+            // Swap values of l and r 
+            char temp = a[l];
+            a[l] = a[r];
+            a[r] = temp;
+        }
+        return String.valueOf(a);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -293,6 +341,8 @@ public class SignUp extends javax.swing.JFrame {
                 ch = pass.charAt(i); //extracts each character
                 nstr = ch + nstr; //adds each character in front of the existing string
             }
+            
+            nstr = strToBinary(nstr);
 
             String q1 = "SELECT * FROM USERDATA WHERE EMAIL =? AND PASSWORD =?  ";
             pst = conn.prepareStatement(q1);
@@ -305,9 +355,9 @@ public class SignUp extends javax.swing.JFrame {
                 try {
                     String q2 = "INSERT INTO USERDATA VALUES(?,?,?,null,null,null) ";
                     pst = conn.prepareStatement(q2);
-                    pst.setString(1, username);
-                    pst.setString(2, email);
-                    pst.setString(3, nstr);
+                    pst.setString(1, email);
+                    pst.setString(2, nstr);
+                    pst.setString(3, username);
                     ResultSet rs1 = pst.executeQuery();
                     if (rs1.next()) {
                         JOptionPane.showMessageDialog(null, "User Created");
